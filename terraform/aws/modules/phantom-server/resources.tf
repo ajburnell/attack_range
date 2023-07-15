@@ -46,6 +46,14 @@ resource "aws_instance" "phantom-server" {
     volume_size           = "30"
     delete_on_termination = "true"
   }
+
+  instance_market_options {
+    market_type = "spot"
+	  spot_options {
+      max_price = 0.150
+    }
+  }
+
   tags = {
     Name = "ar-phantom-${var.general.key_name}-${var.general.attack_range_name}"
   }

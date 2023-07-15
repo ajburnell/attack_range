@@ -42,6 +42,13 @@ resource "aws_instance" "linux_server" {
     delete_on_termination = "true"
   }
 
+  instance_market_options {
+    market_type = "spot"
+	  spot_options {
+      max_price = 0.150
+    }
+  }
+
   tags = {
     Name = "ar-linux-${var.general.key_name}-${var.general.attack_range_name}-${count.index}"
   }

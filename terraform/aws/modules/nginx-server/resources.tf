@@ -43,6 +43,13 @@ resource "aws_instance" "nginx_server" {
     delete_on_termination = "true"
   }
 
+  instance_market_options {
+    market_type = "spot"
+	  spot_options {
+      max_price = 0.0190
+    }
+  }
+
   tags = {
     Name = "ar-nginx-${var.general.key_name}-${var.general.attack_range_name}"
   }
